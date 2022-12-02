@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- site css -->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='../css/style.css') }}" media="all"/>
+    <title> Prediksi Kematian Pasien Penyakit Jantung </title>
+</head>
+
+<body>
+    <div class="form">
+        <h1> Prediksi Kematian Pasien Pengidap Penyakit Jantung Ketika Follow-Up </h1>
+
+        <form action="{{ url_for('predict') }}" method="post">
+            <div class = "form-group">
+                <label for="Hari"> Berapa hari yang dibutuhkan pasien untuk follow-up?</label>
+                <input type="number" name="Hari" class="form-control" id="Hari" placeholder="Jumlah Hari" required="required">
+            </div>
+            <div class = "form-group">
+                <label for="Usia"> Usia pasien </label>
+                <input type="number" name="Usia" class="form-control" id="Usia" placeholder="Usia Pasien" required="required">
+            </div>
+            <div class = "form-group">
+                <label for="KreatininSerum"> Kadar serum kreatinin di darah (mg/L) </label>
+                <input type="number" name="KreatininSerum" class="form-control" id="KreatininSerum" placeholder="Kadar Kreatinin Serum" required="required">
+            </div>
+            <div class = "form-group">
+                <label for="FraksiEjeksi" color="blue"> Persentase fraksi ejeksi (%) </label>
+                <input type="number" name="FraksiEjeksi" class="form-control" id="FraksiEjeksi" placeholder="Persentase Fraksi Ejeksi" required="required">
+            </div>
+            <div class = "form-group">
+                <label for="SodiumSerum" color="blue"> Kadar sodium serum di darah (mEq/L) </label>
+                <input type="number" name="SodiumSerum" class="form-control" id="SodiumSerum" placeholder="Kadar Sodium Serum" required="required">
+            </div>
+            <div class = "form-group">
+                <label for="KadarCPK" color="blue"> Kadar enzim CPK (mcg/L) </label>
+                <input type="number" name="KadarCPK" class="form-control" id="KadarCPK" placeholder="Kadar CPK" required="required">
+            </div>
+            <div class = "form-group">
+                <label for="Trombosit" color="blue"> Jumlah trombosit di darah (kiloplatelets/mL) </label>
+                <input type="number" name="Trombosit" class="form-control" id="Trombosit" placeholder="Jumlah Trombosit" required="required">
+            </div>
+            <div class = "form-group">
+                <label for="Gender"> Gender pasien </label>
+                <select class="form-control" id="Gender" name="Gender" required="required">
+                    <option>-- Pria atau Wanita --</option>
+                    <option value="0">Wanita</option>
+                    <option value="1">Pria</option>
+                </select>
+            </div>
+            <div class = "form-group">
+                <label for="Anemia"> Apakah pasien mengidap anemia? </label>
+                <select class="form-control" id="Anemia" name="Anemia" required="required">
+                    <option>-- Ya atau Tidak --</option>
+                    <option value="0">Tidak</option>
+                    <option value="1">Ya</option>
+                </select>
+            </div>
+            <div class = "form-group">
+                <label for="Diabetes"> Apakah pasien mengidap diabetes? </label>
+                <select class="form-control" id="Diabetes" name="Diabetes" required="required">
+                    <option>-- Ya atau Tidak --</option>
+                    <option value="0">Tidak</option>
+                    <option value="1">Ya</option>
+                </select>
+            </div>
+            <div class = "form-group">
+                <label for="Hipertensi"> Apakah pasien mengidap hipertensi? </label>
+                <select class="form-control" id="Hipertensi" name="Hipertensi" required="required">
+                    <option>-- Ya atau Tidak --</option>
+                    <option value="0">Tidak</option>
+                    <option value="1">Ya</option>
+                </select>
+            </div>
+            <div class = "form-group">
+                <label for="Perokok"> Apakah pasien adalah seorang perokok? </label>
+                <select class="form-control" id="Perokok" name="Perokok" required="required">
+                    <option>-- Ya atau Tidak --</option>
+                    <option value="0">Tidak</option>
+                    <option value="1">Ya</option>
+                </select>
+            </div>
+            <div class="card text-center">
+                <div class="card-header bg-dark text-white font-weight-bold">
+                    Prediksi Kematian Pasien Ketika Follow-up :
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ prediction_text }}</p>
+                </div>
+            </div>
+            <div class="col-lg-12 text-center mt-3 mb-5">
+                <button class="btn btn-primary btn-block btn-large">Predict</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
